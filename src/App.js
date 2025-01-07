@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import News from './pages/News';
 import StockAnalysis from './pages/StockAnalysis';
 import About from './pages/About';
+import AnalysisCenter from './pages/AnalysisCenter';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/news" element={<News />} />
         <Route path="/stock-analysis" element={<StockAnalysis />} />
         <Route path="/about" element={<About />} />
+        <Route path="/analysis-center" element={<AnalysisCenter />} />
       </Routes>
     </Router>
   );
