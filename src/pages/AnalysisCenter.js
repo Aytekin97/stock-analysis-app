@@ -84,8 +84,10 @@ const AnalysisCenter = () => {
     setError(null);
 
     try {
-      const response = await fetch(`https://equity-research-report-generator-production.up.railway.app/api/generate-analysis?company_name=${encodeURIComponent(selectedCompany)}`, {
-        method: 'GET'
+      const response = await fetch('https://equity-research-report-generator-production.up.railway.app/api/generate-analysis', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ company_name: selectedCompany }),
       });
 
       if (!response.ok) {
