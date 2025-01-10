@@ -71,6 +71,7 @@ const AnalysisCenter = () => {
       }
 
       const data = await response.json();
+      console.log(data)
       setPreProcessedData(data);
 
     } catch (error) {
