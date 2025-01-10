@@ -17,6 +17,7 @@ const AnalysisCenter = () => {
   const [documentUrl, setDocumentUrl] = useState(null);
   const [preProcessedData, setPreProcessedData] = useState(null);
   const [error, setError] = useState(null);
+  const [analysisUrl, setAnalysisUrl] = useState(null)
 
   const handleDocumentUpload = async (file) => {
     setLoading(true);
@@ -24,9 +25,11 @@ const AnalysisCenter = () => {
 
     const formData = new FormData();
     formData.append('file', file);
+    formData.append('company_name', selectedCompany);
+    
 
     try {
-      const response = await fetch('/api/upload', {
+      const response = await fetch('https://pdf-upload-services-production.up.railway.app/api/upload', {
         method: 'POST',
         body: formData,
       });
@@ -52,10 +55,13 @@ const AnalysisCenter = () => {
     setError(null);
 
     try {
-      const response = await fetch('/api/preprocess', {
+      const response = await fetch('https://document-pre-processing-services-production.up.railway.app/api/preprocess', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url }),
+        body: JSON.stringify({
+          file_url: url, // Include file URL
+          company_name: selectedCompany, // Include company name
+        }),
       });
 
       if (!response.ok) {
@@ -78,13 +84,8 @@ const AnalysisCenter = () => {
     setError(null);
 
     try {
-      const response = await fetch('/api/analyze', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          company: selectedCompany,
-          documentData: preProcessedData || null,
-        }),
+      const response = await fetch(`https://equity-research-report-generator-production.up.railway.app/api/analyze?company_name=${encodeURIComponent(selectedCompany)}`, {
+        method: 'GET'
       });
 
       if (!response.ok) {
@@ -93,6 +94,13 @@ const AnalysisCenter = () => {
 
       const result = await response.json();
       console.log("Analysis result:", result);
+      const { pdf_url } = result;
+
+      if (pdf_url) {
+          setAnalysisUrl(pdf_url); // Save the S3 URL for download
+      } else {
+          throw new Error('PDF URL not found in response');
+      }
 
     } catch (error) {
       setError(error.message);
@@ -147,6 +155,15 @@ const AnalysisCenter = () => {
         <div className="analysis-option">
           <p>Document preprocessed successfully. Ready for analysis.</p>
           <button onClick={performAnalysis}>Perform Analysis</button>
+        </div>
+      )}
+
+      {analysisUrl && (
+        <div className="download-section">
+          <p>Analysis completed! You can download your report below:</p>
+          <a href={analysisUrl} target="_blank" rel="noopener noreferrer" className="download-link">
+            Download Report
+          </a>
         </div>
       )}
 
