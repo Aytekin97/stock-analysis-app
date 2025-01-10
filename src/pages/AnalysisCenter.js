@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/AnalysisCenter.css';
+import DocumentUploader from '../components/DocumentUploader';
+
 
 const companies = [
   { company: 'Tesla'},
@@ -114,43 +116,47 @@ const AnalysisCenter = () => {
     }
   };
 
+  const handleReset = () => {
+    setError(null);
+    setSelectedCompany(null);
+    setUploadDocument(false);
+    setDocumentUrl(null);
+    setPreProcessedData(null);
+    // etc.
+  };
+
   return (
     <div>
-      <h1>Analysis Center</h1>
-      <p>Select a company and optionally upload a document for analysis.</p>
+      <div className='header-area'>
+        <h1>Analysis Center</h1>
+        <p>Select a company and optionally upload a document for analysis.</p>
+      </div>
 
-      {!selectedCompany && (
-        <div className="company-grid">
-          {companies.map((company) => (
-            <div
-              key={company.company}
-              className='company-box'
-              onClick={() => setSelectedCompany(company.company)}
-            >
-              <h3>{company.company}</h3>
-            </div>
-          ))}
-        </div>
-      )}
+      <div className="company-grid">
+        {companies.map((company) => (
+          <div
+            key={company.company}
+            className='company-box'
+            onClick={() => setSelectedCompany(company.company)}
+          >
+            <h3>{company.company}</h3>
+          </div>
+        ))}
+      </div>
 
       {selectedCompany && !uploadDocument && (
         <div className="upload-option">
           <h3>Selected Company: {selectedCompany}</h3>
           <p>Do you want to upload a document?</p>
-          <button onClick={() => setUploadDocument(true)}>Yes</button>
-          <button onClick={performAnalysis}>No</button>
+          <div className="button-group">
+            <button onClick={() => setUploadDocument(true)} className="yes-button">Yes</button>
+            <button onClick={performAnalysis} className="no-button">No</button>
+          </div>
         </div>
       )}
 
       {uploadDocument && !documentUrl && (
-        <div className="upload-container">
-          <h3>Upload a PDF Document</h3>
-          <input
-            type="file"
-            accept="application/pdf"
-            onChange={(e) => e.target.files[0] && handleDocumentUpload(e.target.files[0])}
-          />
-        </div>
+        <DocumentUploader handleDocumentUpload={handleDocumentUpload} />
       )}
 
       {documentUrl && !preProcessedData && loading && <p>Processing document...</p>}
@@ -171,8 +177,19 @@ const AnalysisCenter = () => {
         </div>
       )}
 
-      {loading && <p>Loading...</p>}
-      {error && <p className="error">Error: {error}</p>}
+      {loading && (
+        <div className="loading-overlay">
+          <div className="spinner"></div>
+          <p>Loading, please wait...</p>
+        </div>
+      )}
+      {error && (
+        <div className="error-container">
+          <h2>Oops! Something went wrong</h2>
+          <p>{error}</p>
+          <button onClick={handleReset}>Start Over</button>
+        </div>
+      )}
     </div>
   );
 };
