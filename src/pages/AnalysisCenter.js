@@ -37,7 +37,7 @@ const AnalysisCenter = () => {
       if (!response.ok) {
         throw new Error('Failed to upload document');
       }
-
+      console.log(response)
       const { url } = await response.json();
       setDocumentUrl(url);
       await preprocessDocument(url);
