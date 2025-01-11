@@ -262,5 +262,33 @@ button:disabled {
   .download-link:hover {
     background-color: #0056b3; /* Darker shade on hover */
   }
+
+  .header-area {
+    /* Layout & Spacing */
+    margin: 15px auto; /* Center horizontally if it has a fixed or max width */
+    padding: 40px 20px; /* Space inside the container (top/bottom, left/right) */
+    max-width: 90%; /* Adjust as needed for your layout */
+  
+    /* Appearance */
+    background-color: #f8f8f8; /* Light grey background */
+    border-radius: 8px; /* Slightly rounded corners */
+    text-align: center; /* Center all text */
+    
+    /* Optional: a subtle drop shadow to give it some depth */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header-area h1 {
+    margin: 0 0 10px;
+    font-size: 2rem; /* Adjust as needed */
+    color: #333; /* Dark text for contrast */
+  }
+  
+  .header-area p {
+    margin: 0;
+    font-size: 1rem;
+    color: #666; /* Slightly lighter text for subheading */
+  }
+  
   
   

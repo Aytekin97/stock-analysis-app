@@ -49,8 +49,10 @@ const News = () => {
 
   return (
     <div>
-      <h1>Financial News</h1>
-      <p>Stay updated with the latest news about your favorite companies.</p>
+      <div className='news-header-area'>
+        <h1>Financial News</h1>
+        <p>Stay updated with the latest news about your favorite companies.</p>
+      </div>    
       <div className="company-grid">
         {companies.map((company) => (
           <div
