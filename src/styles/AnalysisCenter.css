@@ -231,4 +231,36 @@ button:disabled {
     margin: 0;
     text-align: center;
 }
+
+.download-section {
+    margin: 30px auto;
+    padding: 20px;
+    text-align: center;
+    max-width: 600px;
+    border: 1px solid #e1e1e1; /* Optional border to separate the section visually */
+    border-radius: 8px;
+    background-color: #fafafa; /* Light background for contrast */
+  }
+  
+  .download-section p {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .download-link {
+    display: inline-block;
+    background-color: #007BFF; /* Primary button color (Bootstrap-inspired) */
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+  }
+  
+  .download-link:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+  }
+  
   

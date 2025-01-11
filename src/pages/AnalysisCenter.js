@@ -40,11 +40,17 @@ const AnalysisCenter = () => {
         throw new Error('Failed to upload document');
       }
 
-      const { file_url } = await response.json();
-      console.log(file_url)
-      console.log(file_url)
-      setDocumentUrl(documentUrl);
-      await preprocessDocument(file_url);
+      const { file_url, message } = await response.json();
+      
+      if (response.status === 200) {
+          // File uploaded successfully; preprocess it
+          setDocumentUrl(file_url); // Save file URL
+          await preprocessDocument(file_url); // Call preprocessing function
+      } else if (response.status === 409) {
+          // File already exists in S3; set preProcessedData to true
+          console.log(message); // Log the server message for debugging
+          setPreProcessedData(true); // Show preProcessedData section
+      }
 
     } catch (error) {
       setError(error.message);
@@ -144,7 +150,7 @@ const AnalysisCenter = () => {
         ))}
       </div>
 
-      {selectedCompany && !uploadDocument && (
+      {selectedCompany && !uploadDocument && !analysisUrl && (
         <div className="upload-option">
           <h3>Selected Company: {selectedCompany}</h3>
           <p>Do you want to upload a document?</p>
@@ -171,7 +177,12 @@ const AnalysisCenter = () => {
       {analysisUrl && (
         <div className="download-section">
           <p>Analysis completed! You can download your report below:</p>
-          <a href={analysisUrl} target="_blank" rel="noopener noreferrer" className="download-link">
+          <a
+            href={analysisUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="download-link"
+          >
             Download Report
           </a>
         </div>
