@@ -20,6 +20,7 @@ const AnalysisCenter = () => {
   const [preProcessedData, setPreProcessedData] = useState(null);
   const [error, setError] = useState(null);
   const [analysisUrl, setAnalysisUrl] = useState(null)
+  const [documentUploaded, setDocumentUploaded] = useState(false)
 
   const handleDocumentUpload = async (file) => {
     setLoading(true);
@@ -36,20 +37,22 @@ const AnalysisCenter = () => {
         body: formData,
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to upload document');
-      }
-
+      // Parse the response JSON even for non-200 status codes
       const { file_url, message } = await response.json();
-      
+
       if (response.status === 200) {
-          // File uploaded successfully; preprocess it
+          // File uploaded successfully
           setDocumentUrl(file_url); // Save file URL
-          await preprocessDocument(file_url); // Call preprocessing function
+          setDocumentUploaded(true)
+          await preprocessDocument(file_url); // Preprocess the uploaded document
       } else if (response.status === 409) {
-          // File already exists in S3; set preProcessedData to true
+          // File already exists in S3
           console.log(message); // Log the server message for debugging
-          setPreProcessedData(true); // Show preProcessedData section
+          setPreProcessedData(true); // Update UI to indicate preprocessed data is ready
+          setDocumentUploaded(true)
+      } else {
+          // Other non-200 status codes
+          throw new Error(message || 'Failed to upload document');
       }
 
     } catch (error) {
@@ -161,7 +164,7 @@ const AnalysisCenter = () => {
         </div>
       )}
 
-      {uploadDocument && !documentUrl && (
+      {uploadDocument && !documentUrl && !documentUploaded && (
         <DocumentUploader handleDocumentUpload={handleDocumentUpload} />
       )}
 
