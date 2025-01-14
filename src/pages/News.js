@@ -23,7 +23,7 @@ const News = () => {
     try {
       const response = await fetch(`https://fetch-news-to-display-production.up.railway.app/api/news/${company}`);
       if (!response.ok) {
-        const errorDetails = await response.text(); // Get response body for more details
+        const errorDetails = await response.text();
         throw new Error(`Error fetching data: ${response.status} ${response.statusText}\n${errorDetails}`);
       };
 
@@ -49,11 +49,12 @@ const News = () => {
 
   return (
     <div>
-      <div className='news-header-area'>
+      <div className='news-header-area fade-in' style={{ animationDelay: '0.2s' }}>
         <h1>Financial News</h1>
         <p>Stay updated with the latest news about your favorite companies.</p>
       </div>    
-      <div className="company-grid">
+      
+      <div className="company-grid fade-in" style={{ animationDelay: '0.4s' }}>
         {companies.map((company) => (
           <div
             key={company.company}
@@ -65,17 +66,28 @@ const News = () => {
         ))}
       </div>
 
-      {loading && <p>Loading data...</p>}
+      {loading && (
+        <div className="loading-overlay">
+          <div className="spinner"></div>
+          <p>Loading, please wait...</p>
+        </div>
+      )}
       {error && <p>Error: {error}</p>}
 
       {data.length > 0 && (
-        <div className='news-containers'>
-          {data.map((article) => (
+        <div className='news-containers fade-in' style={{ animationDelay: '0.6s' }}>
+          {data.map((article, index) => (
             <div
               key={article.id}
-              className='article-container'
+              className='article-container fade-in'
               onClick={() => window.open(article.link, "_blank")}
-              style={{ cursor: "pointer", border: "1px solid #ccc", padding: "10px", margin: "10px 0" }}
+              style={{ 
+                animationDelay: `${0.6 + index * 0.1}s`, 
+                cursor: "pointer", 
+                border: "1px solid #ccc", 
+                padding: "10px", 
+                margin: "10px 0" 
+              }}
             >
               <h4>{article.title}</h4>
               <p>{article.summary}</p>

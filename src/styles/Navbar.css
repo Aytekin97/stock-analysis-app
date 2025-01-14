@@ -2,69 +2,70 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #333; /* or a gradient, e.g. linear-gradient(45deg, #333, #444) */
+  background: #1A3E5C; /* Primary Navy Blue from the palette */
   color: white;
-  padding: 1rem 2rem; /* More horizontal padding for breathing room */
+  padding: 1rem 2rem;
 }
 
-/* Logo container */
+/* Logo container remains unchanged in layout */
 .logo-container {
   display: flex;
   align-items: center;
 }
 
+/* Logo styling remains unchanged */
 .logo {
-  /* Adjust the size of your logo here */
   height: 40px; 
   width: auto; 
   margin-right: 1rem; 
 }
 
-/* Navigation links container */
+/* Navigation links container remains unchanged in layout */
 .nav-links {
   display: flex;
   align-items: center;
 }
 
-/* Navigation links */
+/* Navigation links styling with palette colors */
 .nav-links a {
-  position: relative;         /* Allows us to position the ::after pseudo-element */
-  color: white;
-  text-decoration: none;      /* Disable default underline */
+  position: relative;
+  color: white;                  /* White text for contrast on dark background */
+  text-decoration: none;
   margin: 0 1rem;
   font-weight: 500;
   transition: color 0.3s ease;
 }
 
-/* Create a "line" that starts hidden (scaleX(0)) and will animate on hover */
+/* Underline styling using the Accent Emerald Green */
 .nav-links a::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -4px;               /* Position the underline slightly below the text */
+  bottom: -4px;
   width: 100%;
-  height: 2px;                /* Thickness of the underline */
-  background-color: #fff;     /* Color for the underline */
-  transform: scaleX(0);       /* Start hidden */
-  transform-origin: right;    /* Animate from right to left */
+  height: 2px;
+  background-color: #2ECC71;    /* Accent color from palette */
+  transform: scaleX(0);
+  transform-origin: right;
   transition: transform 0.3s ease;
 }
 
-/* On hover, the underline "expands" from right to left */
+/* Underline expansion on hover */
 .nav-links a:hover::after {
   transform: scaleX(1);
   transform-origin: left;
 }
 
-/* Hover effect on links */
+/* Change link text color on hover to Secondary Teal */
 .nav-links a:hover {
-  color: #ddd;
+  color: #4BA3C3;               /* Secondary Teal from palette */
 }
 
+/* Brand name styling remains unchanged, as white text is on navy */
 .brand-name {
-  margin: 0;               /* Remove default h2 margin */
-  font-size: 1.5rem;       /* Adjust size to your preference */
-  font-weight: 600;        /* Slightly bold for emphasis */
-  color: #fff;             /* White text for contrast */
-  letter-spacing: 1px;     /* Slight spacing between letters (optional) */
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 1px;
 }

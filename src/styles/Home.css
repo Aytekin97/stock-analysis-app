@@ -1,0 +1,105 @@
+/* Fade-in animation keyframes */
+@keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Fade-in base class */
+  .fade-in {
+    opacity: 0; /* Hidden initially */
+    animation-name: fadeInUp;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+  }
+  
+  /* Container for the home page */
+  .home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Hero Section styling */
+  .hero {
+    background: linear-gradient(135deg, #1A3E5C, #2ECC71);
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+    width: 100%;
+  }
+  
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+  
+  .hero p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+  }
+  
+  .cta-button {
+    background-color: white;
+    color: #1A3E5C;
+    padding: 15px 30px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .cta-button:hover {
+    background-color: #e6e6e6;
+    transform: translateY(-2px);
+  }
+  
+  /* Features Container for Marquee */
+  .features-container {
+    overflow: hidden;
+    width: 100%;
+    margin: 40px 0;
+  }
+  
+  /* Individual feature card styling with fixed size */
+  .feature {
+    background-color: #F4F5F7;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 280px;
+    height: 240px;
+    margin-right: 20px;
+    text-align: center;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
+  
+  .feature h2 {
+    color: #1A3E5C;
+    margin-bottom: 10px;
+    font-size: 1.25rem;
+  }
+  
+  .feature p {
+    color: #333;
+    line-height: 1.5;
+    flex-grow: 1;
+  }
+  
+  .feature:hover {
+    box-shadow: 0 4px 8px rgba(46, 204, 113, 0.2);
+    transform: translateY(-5px);
+  }
+  

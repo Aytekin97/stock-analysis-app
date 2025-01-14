@@ -19,8 +19,8 @@ const AnalysisCenter = () => {
   const [documentUrl, setDocumentUrl] = useState(null);
   const [preProcessedData, setPreProcessedData] = useState(null);
   const [error, setError] = useState(null);
-  const [analysisUrl, setAnalysisUrl] = useState(null)
-  const [documentUploaded, setDocumentUploaded] = useState(false)
+  const [analysisUrl, setAnalysisUrl] = useState(null);
+  const [documentUploaded, setDocumentUploaded] = useState(false);
 
   const handleDocumentUpload = async (file) => {
     setLoading(true);
@@ -136,12 +136,12 @@ const AnalysisCenter = () => {
 
   return (
     <div>
-      <div className='header-area'>
+      <div className='header-area fade-in' style={{ animationDelay: '0.2s' }}>
         <h1>Analysis Center</h1>
         <p>Select a company and optionally upload a document for analysis.</p>
       </div>
 
-      <div className="company-grid">
+      <div className="company-grid fade-in" style={{ animationDelay: '0.4s' }}>
         {companies.map((company) => (
           <div
             key={company.company}

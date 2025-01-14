@@ -51,8 +51,12 @@ const StockAnalysis = () => {
 
   return (
     <div className="stock-analysis">
-      <h1>Stock Analysis</h1>
-      <div className="company-grid">
+      <div className='stock-analysis-header-area fade-in' style={{ animationDelay: '0.2s' }}>       
+        <h1>Stock Analysis</h1>
+        <p>You can check out the stock prices of your favorite companies</p>
+      </div>
+
+      <div className="company-grid fade-in" style={{ animationDelay: '0.4s' }}>
         {companies.map((company) => (
           <div
             key={company.symbol}
@@ -75,13 +79,10 @@ const StockAnalysis = () => {
             <LineChart data={data}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="time" />
-              
-              {/* Updated YAxis with custom tickFormatter for formatting the labels */}
               <YAxis 
                 domain={[minClose - yAxisPadding, maxClose + yAxisPadding]} 
                 tickFormatter={(tick) => tick.toFixed(2)} 
               />
-              
               <Tooltip />
               <Legend />
               <Line type="monotone" dataKey="close" stroke="#8884d8" name="Close Price" />

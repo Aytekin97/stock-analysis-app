@@ -1,0 +1,111 @@
+/* General page styling */
+.about-page {
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* Gradient header styling */
+  .gradient-header {
+    background: linear-gradient(135deg, #1A3E5C, #2ECC71);
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+  }
+  
+  /* Fade-in animation keyframes */
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Fade-in base class */
+  .fade-in {
+    opacity: 0;
+    animation-name: fadeInUp;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+  }
+  
+  /* Gradient header text sizes */
+  .gradient-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .gradient-header p {
+    font-size: 1.25rem;
+  }
+  
+  /* Section styles */
+  .introduction, .company-history, .team, .technology, .contact {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+  
+  /* Team section styling */
+  .team-members {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .team-member {
+    text-align: center;
+    max-width: 400px;
+  }
+  
+  .team-member img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #2ECC71;
+    margin-bottom: 10px;
+  }
+  
+  /* Contact section styling with icons */
+  .contact p {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.1rem;
+  }
+  
+  .contact a {
+    color: #1A3E5C; /* Dark color for contrast on white background */
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .contact a:hover {
+    color: #2ECC71;
+  }
+  
+  .contact svg {
+    color: #2ECC71;
+    transition: transform 0.3s ease;
+  }
+  
+  .contact svg:hover {
+    transform: scale(1.2);
+  }
+  
+  /* Section headings style */
+  h2 {
+    color: #1A3E5C;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    color: #333;
+  }
+  

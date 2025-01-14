@@ -1,60 +1,177 @@
-.company-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    margin-top: 20px;
-}
+/* Fade-in animation keyframes */
+@keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
   
-.company-box {
-    width: 200px;
-    height: 120px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #f0f0f0;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-}
+  /* Fade-in base class */
+  .fade-in {
+    opacity: 0; /* Hidden initially */
+    animation-name: fadeInUp;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+  }
   
-.article-container {
-    background-color: #fff;
-    border-radius: 5px;
-    padding: 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.stock-analysis {
-    text-align: center;
-    margin: 20px;
-}
-  
-.news-header-area {
-    /* Layout & Spacing */
-    margin: 15px auto; /* Center horizontally if it has a fixed or max width */
-    padding: 40px 20px; /* Space inside the container (top/bottom, left/right) */
-    max-width: 90%; /* Adjust as needed for your layout */
-  
-    /* Appearance */
-    background-color: #f8f8f8; /* Light grey background */
-    border-radius: 8px; /* Slightly rounded corners */
-    text-align: center; /* Center all text */
+  /* Grid for company selection boxes */
+  .company-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 20px;
+  }
     
-    /* Optional: a subtle drop shadow to give it some depth */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
+  .company-box {
+      width: 200px;
+      height: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #F4F5F7; /* Light grey from palette */
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
   
-.news-header-area h1 {
-    margin: 0 0 10px;
-    font-size: 2rem; /* Adjust as needed */
-    color: #333; /* Dark text for contrast */
-}
+  .company-box:hover {
+      transform: scale(1.05);
+      border-color: #2ECC71; /* Emerald accent on hover */
+      box-shadow: 0 4px 8px rgba(46, 204, 113, 0.3);
+  }
+    
+  .article-container {
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 10px 0;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+  }
   
-.news-header-area p {
-    margin: 0;
-    font-size: 1rem;
-    color: #666; /* Slightly lighter text for subheading */
-}
+  .article-container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(46, 204, 113, 0.2);
+  }
+  
+  .article-container h4 {
+      margin-top: 0;
+      color: #1A3E5C; /* Primary Navy Blue for headings */
+  }
+  
+  .article-container p {
+      color: #333;
+      line-height: 1.5;
+  }
+    
+  .stock-analysis {
+      text-align: center;
+      margin: 20px;
+  }
+    
+  .news-header-area {
+      margin: 15px auto;
+      padding: 100px 20px; 
+      max-width: 90%;
+      background: linear-gradient(135deg, #1A3E5C, #2ECC71); /* Gradient background */
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      color: white;  /* Ensure text is readable on dark gradient */
+  }
+  
+  .news-header-area h1 {
+      margin: 0 0 10px;
+      font-size: 2.5rem; /* Adjust font size as needed */
+      color: white;      /* White text for contrast on gradient */
+      transition: color 0.3s ease;
+  }
+  
+  .news-header-area h1:hover {
+      color: #2ECC71;  /* Subtle color change on hover, optional */
+  }
+    
+  .news-header-area p {
+      margin: 0;
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.85);  /* White-ish for readability */
+  }
+  
+  /* Error messages styled simply for visibility */
+  .error-container p {
+      font-size: 1.1rem;
+  }
+  
+  .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5); /* A semi-transparent dark overlay */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      animation: fadeInOverlay 0.5s ease-out; /* Subtle fade-in effect */
+  }
+  
+  @keyframes fadeInOverlay {
+      from { opacity: 0; }
+      to { opacity: 1; }
+  }
+  
+  .spinner {
+      width: 48px;
+      height: 48px;
+      border: 6px solid #f3f3f3;
+      border-top: 6px solid #2ECC71; /* Accent green from palette */
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+  }
+  
+  @keyframes spin {
+      0%   { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+  }
+  
+  .loading-overlay p {
+      color: #ffffff;
+      font-size: 1.1rem;
+      margin: 0;
+      text-align: center;
+      animation: pulseText 2s infinite;
+      text-shadow: 0 0 10px rgba(46, 204, 113, 0.7);
+  }
+  
+  @keyframes pulseText {
+      0% {
+          opacity: 1;
+          transform: scale(1);
+      }
+      50% {
+          opacity: 0.7;
+          transform: scale(1.05);
+      }
+      100% {
+          opacity: 1;
+          transform: scale(1);
+      }
+  }
+  
+  .news-containers {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 0 10px;
+  }
+  
