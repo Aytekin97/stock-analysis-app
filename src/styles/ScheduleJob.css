@@ -1,0 +1,128 @@
+/* Fade-in animation keyframes */
+@keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Base fade-in class */
+  .fade-in {
+    opacity: 0;
+    animation-name: fadeInUp;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+  }
+  
+  /* Gradient header similar to News page */
+  .news-header-area {
+    margin: 15px auto;
+    padding: 100px 20px; 
+    max-width: 90%;
+    background: linear-gradient(135deg, #1A3E5C, #2ECC71);
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: white;
+  }
+  
+  .news-header-area h1 {
+    margin: 0 0 10px;
+    font-size: 2.5rem;
+    color: white;
+    transition: color 0.3s ease;
+  }
+  
+  .news-header-area p {
+    margin: 0;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.85);
+  }
+  
+  /* Container for the scheduling page content */
+  .schedule-job-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+  }
+  
+  /* Company selection grid */
+  .company-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .company-box {
+    width: 200px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #F4F5F7;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .company-box:hover {
+    transform: scale(1.05);
+    border-color: #2ECC71;
+    box-shadow: 0 4px 8px rgba(46, 204, 113, 0.3);
+  }
+  
+  .company-box.selected {
+    border-color: #2ECC71;
+    background-color: #dff0d8;
+  }
+  
+  /* Label styling */
+  .schedule-job-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #1A3E5C;
+  }
+  
+  /* Input and select styling */
+  .schedule-job-container select,
+  .schedule-job-container input[type="time"] {
+    padding: 5px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Button styling */
+  .schedule-job-container button {
+    padding: 10px 20px;
+    background-color: #2ECC71;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .schedule-job-container button:hover {
+    background-color: #27ae60;
+  }
+  
+  /* Feedback message styling */
+  .schedule-job-container p {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #2ECC71;
+  }
+  
